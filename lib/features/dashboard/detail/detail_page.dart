@@ -11,7 +11,7 @@ class DetailsPage extends StatelessWidget {
       appBar: AppBar(title: const Text('Details Page')),
       body: Center(
         child: ElevatedButton(
-          onPressed: () => Modular.to.navigate('/home'),
+          onPressed: () => Modular.to.navigate('/dashboard-module/'),
           child: Text('Navigate to Home Page'),
         ),
       ),

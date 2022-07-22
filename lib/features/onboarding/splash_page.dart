@@ -8,9 +8,9 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Splash Page')),
-      body:  Center(
+      body: Center(
         child: ElevatedButton(
-          onPressed: () => Modular.to.navigate('/home'),
+          onPressed: () => Modular.to.navigate('/dashboard-module/'),
           child: Text('Navigate to home Page'),
         ),
       ),

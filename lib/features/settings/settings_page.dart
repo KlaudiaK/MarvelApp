@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -7,9 +8,11 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Settings Page')),
-      body: const Center(
-        child: Text('This is settings page'),
-      ),
-    );
+      body:  Center(
+        child: ElevatedButton(
+          onPressed: () => Modular.to.navigate('/dashboard-module/'),
+          child: Text('Navigate to home Page'),
+        ),
+    ));
   }
 }

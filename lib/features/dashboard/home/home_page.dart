@@ -8,19 +8,24 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home Page')),
-      body:  Center(
+      body: Center(
         child: Column(
           children: [
             ElevatedButton(
-          onPressed: () => Modular.to.navigate('/search'),
-          child: Text('Navigate to search Page'),
-        ),
-        ElevatedButton(
-          onPressed: () => Modular.to.navigate('/detail/1'),
-          child: Text('Navigate to detail Page'),
-        ),
+              onPressed: () => Modular.to.navigate('/dashboard-module/search'),
+              child: Text('Navigate to search Page'),
+            ),
+            ElevatedButton(
+              onPressed: () =>
+                  Modular.to.navigate('/dashboard-module/detail/1'),
+              child: Text('Navigate to detail Page'),
+            ),
+            ElevatedButton(
+              onPressed: () => Modular.to.navigate('/settings-module/'),
+              child: Text('Navigate to settings Page'),
+            ),
           ],
-          ),
+        ),
       ),
     );
   }

@@ -6,6 +6,7 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp.router(
       title: 'Marvel App',
       theme: ThemeData(primarySwatch: Colors.blue),

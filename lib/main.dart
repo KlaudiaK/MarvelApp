@@ -7,3 +7,4 @@ import 'di/app_module.dart';
 void main() {
   return runApp(ModularApp(module: AppModule(), child: AppWidget()));
 }
+
