@@ -8,13 +8,14 @@ import 'package:marvel_app/repository/comic_repository_interface.dart';
 import 'package:dio/dio.dart';
 
 import '../data/remote/results_dto.dart';
+
 class ComicRepository implements ComicRepositoryInterface {
   ComicRepository({required this.api});
   DioClient api;
-  
+
   @override
-  Future<ComicItem?> getComicInfo({required String id}) async{
-   Results? comic;
+  Future<ComicItem?> getComicInfo({required String id}) async {
+    Results? comic;
     try {
       Response userData = await api.dio.get(api.getPath, queryParameters: {
         "ts": api.getTimestamp,
@@ -23,24 +24,16 @@ class ComicRepository implements ComicRepositoryInterface {
         "id": id
       });
       log('Comic Info: ${userData.data}');
-       comic = ComicDTO.fromJson(userData.data).data?.results?.first;
+      comic = ComicDTO.fromJson(userData.data).data?.results?.first;
     } on DioError catch (e) {
-      if (e.response != null) {
-        log('Dio error!');
-        log('STATUS: ${e.response?.statusCode}');
-        log('DATA: ${e.response?.data}');
-        log('HEADERS: ${e.response?.headers}');
-      } else {
-        log('Error sending request!');
-        log(e.message);
-      }
+       handleDioError(e);
     }
     ComicItem? item = comic?.toComicItem();
     return item;
   }
-  
+
   @override
-  Future<List<ComicItem>> getComicList() async{
+  Future<List<ComicItem>> getComicList() async {
     List<Results>? comicList;
     List<ComicItem> resultsList = List.empty();
     try {
@@ -53,26 +46,20 @@ class ComicRepository implements ComicRepositoryInterface {
         "orderBy": api.getOrderBy
       });
       log('Comic Info: ${userData.data}');
-       comicList = ComicDTO.fromJson(userData.data).data?.results;
+      comicList = ComicDTO.fromJson(userData.data).data?.results;
     } on DioError catch (e) {
-      if (e.response != null) {
-        log('Dio error!');
-        log('STATUS: ${e.response?.statusCode}');
-        log('DATA: ${e.response?.data}');
-        log('HEADERS: ${e.response?.headers}');
-      } else {
-        log('Error sending request!');
-        log(e.message);
-      }
+       handleDioError(e);
     }
-    comicList?.forEach((element) { resultsList.add(element.toComicItem());});
+    comicList?.forEach((element) {
+      resultsList.add(element.toComicItem());
+    });
     return resultsList;
   }
-  
+
   @override
-  Future<List<ComicItem?>> searchComicList({required String query}) async{
+  Future<List<ComicItem?>> searchComicList({required String query}) async {
     List<Results>? comicList;
-      List<ComicItem> resultsList = List.empty();
+    List<ComicItem> resultsList = List.empty();
     try {
       Response userData = await api.dio.get(api.getPath, queryParameters: {
         "ts": api.getTimestamp,
@@ -83,19 +70,27 @@ class ComicRepository implements ComicRepositoryInterface {
       log('Comic Info: ${userData.data}');
       comicList = ComicDTO.fromJson(userData.data).data?.results;
     } on DioError catch (e) {
-      if (e.response != null) {
-        log('Dio error!');
-        log('STATUS: ${e.response?.statusCode}');
-        log('DATA: ${e.response?.data}');
-        log('HEADERS: ${e.response?.headers}');
-      } else {
-        log('Error sending request!');
-        log(e.message);
-      }
+      handleDioError(e);
     }
-      comicList?.forEach((element) { resultsList.add(element.toComicItem());});
-      return resultsList;
+    comicList?.forEach((element) {
+      resultsList.add(element.toComicItem());
+    });
+    return resultsList;
   }
 
-
+  void handleDioError(DioError e) {
+    if (e.response != null) {
+      log('Dio error!');
+      log('STATUS: ${e.response?.statusCode}');
+      log('DATA: ${e.response?.data}');
+      log('HEADERS: ${e.response?.headers}');
+      throw Exception(
+          'Failed to get comic from API. Caused by error ${e.response?.statusCode}');
+    } else {
+      log('Error sending request!');
+      log(e.message);
+      throw Exception(
+          'Cannot send request. ${e.message}');
+    }
+  }
 }
