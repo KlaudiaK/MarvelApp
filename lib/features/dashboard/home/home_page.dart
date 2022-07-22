@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
               child: Text('Navigate to detail Page'),
             ),
             ElevatedButton(
-              onPressed: () => Modular.to.navigate('/settings-module/'),
+              onPressed: () => Modular.to.navigate('/settings-module'),
               child: Text('Navigate to settings Page'),
             ),
           ],
