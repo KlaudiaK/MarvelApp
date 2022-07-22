@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:marvel_app/utils/navigation_paths.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,16 +13,16 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             ElevatedButton(
-              onPressed: () => Modular.to.navigate('/dashboard-module/search'),
+              onPressed: () => Modular.to.navigate('${NavigationPaths.dashboardModulePath}${NavigationPaths.searchPagePath}'),
               child: Text('Navigate to search Page'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  Modular.to.navigate('/dashboard-module/detail/1'),
+                  Modular.to.navigate('${NavigationPaths.dashboardModulePath}${NavigationPaths.simpleDetailsPagePath}/1'),
               child: Text('Navigate to detail Page'),
             ),
             ElevatedButton(
-              onPressed: () => Modular.to.navigate('/settings-module'),
+              onPressed: () => Modular.to.navigate(NavigationPaths.setingsModulePath),
               child: Text('Navigate to settings Page'),
             ),
           ],
