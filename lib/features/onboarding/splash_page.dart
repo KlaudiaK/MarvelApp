@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
-
+//TODO Create splash page
   @override
   Widget build(BuildContext context) {
     return Scaffold(

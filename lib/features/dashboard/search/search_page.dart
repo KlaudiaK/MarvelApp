@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
-
+//TODO Create search page
   @override
   Widget build(BuildContext context) {
     return Scaffold(

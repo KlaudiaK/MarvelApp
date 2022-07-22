@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 class DetailsPage extends StatelessWidget {
   final String? id;
   const DetailsPage({Key? key, required this.id}) : super(key: key);
-
+//TODO Create details page
   @override
   Widget build(BuildContext context) {
     return Scaffold(
