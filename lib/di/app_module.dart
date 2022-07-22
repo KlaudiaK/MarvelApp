@@ -20,7 +20,7 @@ class AppModule extends Module {
         ChildRoute('/', child: (context, args) => const SplashPage()),
         ChildRoute('/home', child: (context, args) => const HomePage()),
         ChildRoute('/search', child: (context, args) => const SearchPage()),
-        ChildRoute('/detail',
+        ChildRoute('/detail/:id',
             child: (context, args) => DetailsPage(id: args.queryParams['id'])),
         ChildRoute('/settings', child: (context, args) => const SettingsPage()),
       ];

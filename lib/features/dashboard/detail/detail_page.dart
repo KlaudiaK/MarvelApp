@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class DetailsPage extends StatelessWidget {
   final String? id;
@@ -8,8 +9,11 @@ class DetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Details Page')),
-      body: const Center(
-        child: Text('This is details page'),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () => Modular.to.navigate('/home'),
+          child: Text('Navigate to Home Page'),
+        ),
       ),
     );
   }
