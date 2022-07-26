@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:marvel_app/features/dashboard/cubit/search_comic_list_state.dart';
 import 'package:meta/meta.dart';
 
 import '../../../repository/comic_repository.dart';
-import '../detail/cubit/comic_detail_cubit.dart';
-import '../home/cubit/comic_list_cubit.dart';
-import '../search/cubit/search_comic_list_cubit.dart';
+
+import 'comic_detail_state.dart';
+import 'comic_list_state.dart';
 
 part 'comic_state.dart';
 

@@ -1,21 +1,26 @@
-part of 'search_comic_list_cubit.dart';
+
+
+import 'package:flutter/cupertino.dart';
+
+import '../../../data/local/comic.dart';
+import 'comic_cubit.dart';
 
 @immutable
-abstract class SearchComicListState extends ComicState{
-   SearchComicListState();
+abstract class SearchComicListState extends ComicState {
+  SearchComicListState();
 }
 
 class SearchComicListInitial extends SearchComicListState {
-   SearchComicListInitial();
+  SearchComicListInitial();
 }
 
 class SearchComicListLoading extends SearchComicListState {
-   SearchComicListLoading();
+  SearchComicListLoading();
 }
 
 class SearchComicListLoaded extends SearchComicListState {
   final List<ComicItem?> comicList;
-   SearchComicListLoaded(this.comicList);
+  SearchComicListLoaded(this.comicList);
 
   @override
   bool operator ==(Object o) {
@@ -30,7 +35,7 @@ class SearchComicListLoaded extends SearchComicListState {
 
 class SearchComicListError extends SearchComicListState {
   final String message;
-   SearchComicListError(this.message);
+  SearchComicListError(this.message);
 
   @override
   bool operator ==(Object o) {

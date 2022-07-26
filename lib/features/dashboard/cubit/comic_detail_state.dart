@@ -1,18 +1,21 @@
-part of 'comic_detail_cubit.dart';
+
+import 'package:flutter/cupertino.dart';
+import 'package:marvel_app/features/dashboard/cubit/comic_cubit.dart';
+
+import '../../../data/local/comic.dart';
 
 @immutable
-abstract class ComicDetailState extends ComicState{
-   ComicDetailState();
+abstract class ComicDetailState extends ComicState {
+  ComicDetailState();
 }
 
-
 class ComicDetailLoading extends ComicDetailState {
-   ComicDetailLoading();
+  ComicDetailLoading();
 }
 
 class ComicDetailLoaded extends ComicDetailState {
   final ComicItem? comic;
-   ComicDetailLoaded(this.comic);
+  ComicDetailLoaded(this.comic);
 
   @override
   bool operator ==(Object o) {
@@ -27,7 +30,7 @@ class ComicDetailLoaded extends ComicDetailState {
 
 class ComicDetailError extends ComicDetailState {
   final String message;
-   ComicDetailError(this.message);
+  ComicDetailError(this.message);
 
   @override
   bool operator ==(Object o) {

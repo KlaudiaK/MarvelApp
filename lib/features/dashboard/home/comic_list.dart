@@ -3,20 +3,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marvel_app/features/dashboard/cubit/comic_cubit.dart';
 import '../../../repository/comic_repository.dart';
+import '../cubit/comic_list_state.dart';
 import 'comic_card.dart';
 import 'package:marvel_app/utils/navigation_paths.dart';
 
-import 'cubit/comic_list_cubit.dart';
 import 'package:provider/provider.dart';
 
 class ComicListWidget extends StatelessWidget {
   ComicListWidget({Key? key}) : super(key: key);
   final _comicRepository = Modular.get<ComicRepository>();
   // final cubit  = Modular.get<ComicCubit>();
+
   @override
   Widget build(BuildContext context) {
+    Modular.get<ComicCubit>().getComicList();
     return BlocProvider(
-        create: (context) => Modular.get<ComicListCubit>(), child: ComicList());
+        create: (context) => Modular.get<ComicCubit>(), child: ComicList());
   }
 }
 
@@ -25,8 +27,7 @@ class ComicList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Modular.get<ComicListCubit>().getComicList();
-    return BlocBuilder<ComicListCubit, ComicListState>(
+    return BlocBuilder<ComicCubit, ComicState>(
       builder: (context, state) {
         if (state is ComicListInitial) {
           return Container();

@@ -1,21 +1,25 @@
-part of 'comic_list_cubit.dart';
+
+import 'package:flutter/cupertino.dart';
+
+import '../../../data/local/comic.dart';
+import 'comic_cubit.dart';
 
 @immutable
-abstract class ComicListState extends ComicState{
-   ComicListState();
+abstract class ComicListState extends ComicState {
+  ComicListState();
 }
 
 class ComicListInitial extends ComicListState {
-   ComicListInitial();
+  ComicListInitial();
 }
 
 class ComicListLoading extends ComicListState {
-   ComicListLoading();
+  ComicListLoading();
 }
 
 class ComicListLoaded extends ComicListState {
   final List<ComicItem> comic;
-   ComicListLoaded(this.comic);
+  ComicListLoaded(this.comic);
 
   @override
   bool operator ==(Object o) {
@@ -30,7 +34,7 @@ class ComicListLoaded extends ComicListState {
 
 class ComicListError extends ComicListState {
   final String message;
-   ComicListError(this.message);
+  ComicListError(this.message);
 
   @override
   bool operator ==(Object o) {

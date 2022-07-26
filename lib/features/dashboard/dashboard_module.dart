@@ -1,7 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marvel_app/features/dashboard/cubit/comic_cubit.dart';
-import 'package:marvel_app/features/dashboard/detail/cubit/comic_detail_cubit.dart';
-import 'package:marvel_app/features/dashboard/home/cubit/comic_list_cubit.dart';
+
 import 'package:marvel_app/utils/navigation_paths.dart';
 
 import '../dashboard/home/home_page.dart';
@@ -12,7 +11,6 @@ class DashboardModule extends Module {
   @override
   List<Bind> get binds => [
    Bind.lazySingleton((i) => ComicCubit(i())),
-    Bind.lazySingleton((i) => ComicListCubit(i()))
   ];
   @override
   List<ModularRoute> get routes => [
