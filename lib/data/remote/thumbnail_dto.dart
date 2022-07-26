@@ -20,7 +20,7 @@ class Thumbnail {
 
   String? getFullPath(){
     if(extension != null && path != null){
-      return '$path$extension';
+      return '$path.$extension';
     }
     
   }

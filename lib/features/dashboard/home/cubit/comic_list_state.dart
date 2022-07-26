@@ -1,22 +1,21 @@
 part of 'comic_list_cubit.dart';
 
-
 @immutable
-abstract class ComicListState {
-  const ComicListState();
+abstract class ComicListState extends ComicState{
+   ComicListState();
 }
 
 class ComicListInitial extends ComicListState {
-  const ComicListInitial();
+   ComicListInitial();
 }
 
 class ComicListLoading extends ComicListState {
-  const ComicListLoading();
+   ComicListLoading();
 }
 
 class ComicListLoaded extends ComicListState {
   final List<ComicItem> comic;
-  const ComicListLoaded(this.comic);
+   ComicListLoaded(this.comic);
 
   @override
   bool operator ==(Object o) {
@@ -29,10 +28,9 @@ class ComicListLoaded extends ComicListState {
   int get hashCode => comic.hashCode;
 }
 
-
 class ComicListError extends ComicListState {
   final String message;
-  const ComicListError(this.message);
+   ComicListError(this.message);
 
   @override
   bool operator ==(Object o) {
@@ -43,5 +41,4 @@ class ComicListError extends ComicListState {
 
   @override
   int get hashCode => message.hashCode;
-
 }

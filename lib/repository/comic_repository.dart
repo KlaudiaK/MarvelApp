@@ -35,7 +35,8 @@ class ComicRepository implements ComicRepositoryInterface {
   @override
   Future<List<ComicItem>> getComicList() async {
     List<Results>? comicList;
-    List<ComicItem> resultsList = List.empty();
+    var resultsList = <ComicItem>[];
+
     try {
       Response userData = await api.dio.get(api.getPath, queryParameters: {
         "ts": api.getTimestamp,
@@ -47,12 +48,20 @@ class ComicRepository implements ComicRepositoryInterface {
       });
       log('Comic Info: ${userData.data}');
       comicList = ComicDTO.fromJson(userData.data).data?.results;
+      
     } on DioError catch (e) {
        handleDioError(e);
     }
+    log('${comicList?.length.toString()}');
     comicList?.forEach((element) {
-      resultsList.add(element.toComicItem());
-    });
+         
+
+            resultsList.add(element.toComicItem());
+            //log(comic.title.toString());
+        });
+     
+    
+  //  log('Success: ${resultsList[0].title}');
     return resultsList;
   }
 

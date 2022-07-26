@@ -76,10 +76,17 @@ class Results {
   }
 
   ComicItem toComicItem() {
+    String? author;
+    if(creators?.items != null){
+        if (creators?.items?.isNotEmpty ?? true){
+            author = creators?.items?[0].name;
+        }
+    }
+    thumbnail?.path = thumbnail?.path?.replaceAll("http", "https");
     return ComicItem(
         id: id,
         title: title,
-        author: creators?.items?.first.name,
+        author: author ?? "Unknown",
         description: description,
         thumbnail: thumbnail?.getFullPath(),
         uriDetails: resourceURI);

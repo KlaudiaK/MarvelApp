@@ -1,11 +1,12 @@
 import 'package:bloc/bloc.dart';
+import 'package:marvel_app/features/dashboard/cubit/comic_cubit.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../data/local/comic.dart';
 import '../../../../repository/comic_repository.dart';
 
 part 'comic_detail_state.dart';
-
+/*
 class ComicDetailCubit extends Cubit<ComicDetailState> {
   final ComicRepository _comicRepository;
 
@@ -20,3 +21,4 @@ class ComicDetailCubit extends Cubit<ComicDetailState> {
     }
   }
 }
+*/

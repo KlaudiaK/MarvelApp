@@ -7,7 +7,7 @@ class DioClient {
     BaseOptions(
       baseUrl: 'https://gateway.marvel.com',
       connectTimeout: 5000,
-      receiveTimeout: 3000),
+      receiveTimeout: 10000),
       
   );
   Dio get dio => _dio;

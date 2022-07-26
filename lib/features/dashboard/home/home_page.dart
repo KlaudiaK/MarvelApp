@@ -1,15 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:marvel_app/di/di_module.dart';
+import 'package:marvel_app/features/dashboard/bottom_bar/bottom_bar.dart';
+import 'package:marvel_app/features/dashboard/home/cubit/comic_list_cubit.dart';
+import 'package:marvel_app/repository/comic_repository.dart';
 import 'package:marvel_app/utils/navigation_paths.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-  //TODO Create home page
+   HomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Material App',
+      home: DashboardTabs(),
+    );
+  }
+}
+
+class ComicListPage extends StatelessWidget {
+  const ComicListPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home Page')),
-      body: Center(
+      body: 
+      Center(
+        child: ElevatedButton(
+              onPressed: () => Modular.to.navigate('${NavigationPaths.dashboardModulePath}${NavigationPaths.searchPagePath}'),
+              child: Text('Navigate to search Page'),
+            ),
+            /*
         child: Column(
           children: [
             ElevatedButton(
@@ -26,8 +49,9 @@ class HomePage extends StatelessWidget {
               child: Text('Navigate to settings Page'),
             ),
           ],
-        ),
+        ),*/
       ),
+      
     );
   }
 }
