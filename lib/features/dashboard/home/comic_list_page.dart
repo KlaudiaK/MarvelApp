@@ -17,8 +17,9 @@ class ComicListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return BlocProvider(
-        create: (context) => cubit, child: const ComicListWidget());
+        create: (context) => cubit..getComicList(), child: const ComicListWidget());
   }
 }
 
@@ -28,6 +29,7 @@ class ComicListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ComicCubit, ComicListState>(builder: (context, state) {
+      state = ReadContext(context).read<ComicCubit>().state;
       switch (state.comicListStatus) {
         case ResponseStatus.initial:
           {

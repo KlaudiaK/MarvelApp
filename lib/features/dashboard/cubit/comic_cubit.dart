@@ -8,9 +8,7 @@ import '../../../repository/comic_repository.dart';
 part 'comic_state.dart';
 
 class ComicCubit extends Cubit<ComicListState> {
-  ComicCubit(this._comicRepository) : super(const ComicListState()) {
-    getComicList();
-  }
+  ComicCubit(this._comicRepository) : super(const ComicListState());
   final ComicRepository _comicRepository;
 
   Future<void> getComicList() async {
