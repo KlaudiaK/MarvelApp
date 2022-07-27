@@ -61,7 +61,7 @@ class ComicRepository implements ComicRepositoryInterface {
   @override
   Future<List<ComicItem?>> searchComicList({required String query}) async {
     List<Results>? comicList;
-    List<ComicItem> resultsList = List.empty();
+    var resultsList = <ComicItem>[];
     try {
       Response userData = await api.dio.get(api.getPath, queryParameters: {
         "ts": api.getTimestamp,
