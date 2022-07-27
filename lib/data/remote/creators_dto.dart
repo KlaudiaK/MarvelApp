@@ -12,20 +12,20 @@ class Creators {
     if (json['items'] != null) {
       items = <Items>[];
       json['items'].forEach((v) {
-        items!.add(new Items.fromJson(v));
+        items!.add(Items.fromJson(v));
       });
     }
     returned = json['returned'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['available'] = this.available;
-    data['collectionURI'] = this.collectionURI;
-    if (this.items != null) {
-      data['items'] = this.items!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['available'] = available;
+    data['collectionURI'] = collectionURI;
+    if (items != null) {
+      data['items'] = items!.map((v) => v.toJson()).toList();
     }
-    data['returned'] = this.returned;
+    data['returned'] = returned;
     return data;
   }
 }
@@ -44,10 +44,10 @@ class Items {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['resourceURI'] = this.resourceURI;
-    data['name'] = this.name;
-    data['role'] = this.role;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['resourceURI'] = resourceURI;
+    data['name'] = name;
+    data['role'] = role;
     return data;
   }
 }
