@@ -12,7 +12,7 @@ class DashboardModule extends Module {
   @override
   List<Bind> get binds => [
         Bind.singleton((i) => ComicCubit(i())),
-        Bind.singleton((i) => ComicSearchBloc(i())),
+        Bind.factory((i) => ComicSearchBloc(i())),
       ];
   @override
   List<ModularRoute> get routes => [
