@@ -12,20 +12,17 @@ part 'comic_search_state.dart';
 class ComicSearchBloc extends Bloc<ComicSearchEvent, ComicSearchState> {
   final ComicRepository _comicRepository;
   ComicSearchBloc(this._comicRepository) : super(ComicSearchInitial()) {
-    on<OnTitleChanged>(
-      _onTitleChanged
-    );
+    on<OnTitleChanged>(_onTitleChanged);
   }
 
   void _onTitleChanged(
       OnTitleChanged event, Emitter<ComicSearchState> emit) async {
-
-        log("In on title changed");
+    log("In on title changed");
     try {
       emit(ComicSearchLoading());
       final comicList =
           await _comicRepository.searchComicList(query: event.query);
-          
+      log(comicList.toString());
       emit(ComicSearchLoaded(comicList));
     } catch (e) {
       emit(ComicSearchError());

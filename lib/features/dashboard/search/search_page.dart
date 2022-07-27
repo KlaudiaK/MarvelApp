@@ -11,10 +11,11 @@ import '../home/comic_list.dart';
 class SearchPage extends StatelessWidget {
   SearchPage({Key? key}) : super(key: key);
 
-  ComicSearchBloc bloc = Modular.get<ComicSearchBloc>();
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (context) => bloc, child: const SearchScreen());
+    return BlocProvider(
+        create: (context) => Modular.get<ComicSearchBloc>(),
+        child: const SearchScreen());
   }
 }
 
@@ -26,7 +27,6 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  ComicSearchBloc bloc = Modular.get<ComicSearchBloc>();
   TextEditingController queryController = TextEditingController();
   String _query = '';
   @override
@@ -73,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ],
         ),
-        Expanded(child: SearchComicListWidget()),
+        const Expanded(child: SearchComicListWidget()),
       ],
     );
   }
@@ -97,13 +97,16 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   _changed() {
-    //StateError (Bad state: Cannot add new events after calling close)
-    bloc.add(OnTitleChanged(queryController.text));
+    if (queryController.text.isNotEmpty) {
+      ReadContext(context)
+          .read<ComicSearchBloc>()
+          .add(OnTitleChanged(queryController.text));
+    }
   }
 }
 
 class SearchComicListWidget extends StatelessWidget {
-  SearchComicListWidget({
+  const SearchComicListWidget({
     Key? key,
   }) : super(key: key);
 
@@ -112,30 +115,37 @@ class SearchComicListWidget extends StatelessWidget {
     return BlocBuilder<ComicSearchBloc, ComicSearchState>(
         builder: (context, state) {
       if (state is ComicSearchInitial) {
-        log("initial");
-        return SizedBox(
-          height: 100,
-          width: 200,
-          child: ElevatedButton(
-            onPressed: () =>
-                Modular.to.navigate(NavigationPaths.dashboardModulePath),
-            child: const Text('Navigate to home Page'),
+        return Center(
+          child: SizedBox(
+            height: 400,
+            width: 300,
+            child: Column(
+              children: const [
+                Text(
+                  'Start typing to find a particular comics',
+                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.w700),
+                  overflow: TextOverflow.visible,
+                  textAlign: TextAlign.center,
+                ),
+                Divider(
+                  height: 30,
+                ),
+                Icon(Icons.book, size: 150)
+              ],
+            ),
           ),
         );
       } else if (state is ComicSearchLoading) {
-        log("loading");
         return const Center(
           child: CircularProgressIndicator(),
         );
       } else if (state is ComicSearchLoaded) {
-        log("success");
         if (state.comicList != []) {
           return ComicList(comics: state.comicList);
         } else {
           return const Center(child: Text("No results :("));
         }
       } else if (state is ComicSearchError) {
-        log("error");
         return const Center(child: Text("Error"));
       } else {
         return Container();
