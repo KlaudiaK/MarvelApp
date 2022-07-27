@@ -87,6 +87,7 @@ class Results {
         author: author ?? "Unknown",
         description: description,
         thumbnail: thumbnail?.getFullPath(),
-        uriDetails: resourceURI);
+        uriDetails: resourceURI
+        );
   }
 }
