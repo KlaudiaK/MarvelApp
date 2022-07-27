@@ -10,15 +10,15 @@ abstract class SearchComicListState extends ComicState {
   SearchComicListState();
 }
 
-class SearchComicListInitial extends SearchComicListState {
+class SearchComicListInitial extends ComicState {
   SearchComicListInitial();
 }
 
-class SearchComicListLoading extends SearchComicListState {
+class SearchComicListLoading extends ComicState {
   SearchComicListLoading();
 }
 
-class SearchComicListLoaded extends SearchComicListState {
+class SearchComicListLoaded extends ComicState {
   final List<ComicItem?> comicList;
   SearchComicListLoaded(this.comicList);
 
@@ -33,7 +33,7 @@ class SearchComicListLoaded extends SearchComicListState {
   int get hashCode => comicList.hashCode;
 }
 
-class SearchComicListError extends SearchComicListState {
+class SearchComicListError extends ComicState {
   final String message;
   SearchComicListError(this.message);
 

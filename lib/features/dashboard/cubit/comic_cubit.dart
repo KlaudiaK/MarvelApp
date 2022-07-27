@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:marvel_app/data/local/comic.dart';
 import 'package:marvel_app/features/dashboard/cubit/search_comic_list_state.dart';
 import 'package:meta/meta.dart';
 
@@ -10,7 +11,9 @@ import 'comic_list_state.dart';
 part 'comic_state.dart';
 
 class ComicCubit extends Cubit<ComicState> {
-  ComicCubit(this._comicRepository) : super(ComicInitial());
+  ComicCubit(this._comicRepository) : super(ComicInitial()) {
+      getComicList();
+  }
   final ComicRepository _comicRepository;
 
   Future<void> getComicDetail(String id) async {
@@ -27,7 +30,6 @@ class ComicCubit extends Cubit<ComicState> {
     try {
       emit(ComicListLoading());
       final comicList = await _comicRepository.getComicList();
-      print("COMIC LIST"+ comicList.toString());
       emit(ComicListLoaded(comicList));
     } catch (e) {
       emit(ComicListError(e.toString()));

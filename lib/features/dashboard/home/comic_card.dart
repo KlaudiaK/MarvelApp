@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:marvel_app/data/local/comic.dart';
 
 class ComicCard extends StatelessWidget {
-  final ComicItem comic;
+  final ComicItem? comic;
   const ComicCard({Key? key, required this.comic}) : super(key: key);
 
   @override
@@ -11,7 +11,7 @@ class ComicCard extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Image.network(
-          comic.thumbnail ??
+          comic?.thumbnail ??
               'https://static.posters.cz/image/750/plakaty/marvel-comic-here-come-the-heroes-i34927.jpg',
           width: 100,
         ),
@@ -28,18 +28,18 @@ class ComicCard extends StatelessWidget {
                 Container(
                   width: 200,
                   height: 100,
-                  padding: EdgeInsets.only(top: 6.0),
+                  padding: const EdgeInsets.only(top: 6.0),
                   child: Text(
-                    comic.title ?? "",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                    comic?.title ?? "",
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                     overflow: TextOverflow.visible,
                   ),
                 ),
                 Container(
                     width: 200,
                     height: 50,
-                    padding: EdgeInsets.only(top: 2.0),
-                    child: Text('Written by ${comic.author}')),
+                    padding: const EdgeInsets.only(top: 2.0),
+                    child: Text('Written by ${comic?.author}')),
               ],
             )),
       ],

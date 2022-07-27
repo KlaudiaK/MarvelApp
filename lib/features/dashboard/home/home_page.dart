@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marvel_app/di/di_module.dart';
 import 'package:marvel_app/features/dashboard/bottom_bar/bottom_bar.dart';
 
-import 'package:marvel_app/repository/comic_repository.dart';
 import 'package:marvel_app/utils/navigation_paths.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,7 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Material App',
       home: DashboardTabs(),
     );

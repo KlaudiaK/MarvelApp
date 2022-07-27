@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 
 import '../../../data/local/comic.dart';
@@ -7,17 +6,19 @@ import 'comic_cubit.dart';
 @immutable
 abstract class ComicListState extends ComicState {
   ComicListState();
+  @override
+  String toString() => "Comic List State";
 }
 
-class ComicListInitial extends ComicListState {
+class ComicListInitial extends ComicState {
   ComicListInitial();
 }
 
-class ComicListLoading extends ComicListState {
+class ComicListLoading extends ComicState {
   ComicListLoading();
 }
 
-class ComicListLoaded extends ComicListState {
+class ComicListLoaded extends ComicState {
   final List<ComicItem> comic;
   ComicListLoaded(this.comic);
 
@@ -32,7 +33,7 @@ class ComicListLoaded extends ComicListState {
   int get hashCode => comic.hashCode;
 }
 
-class ComicListError extends ComicListState {
+class ComicListError extends ComicState {
   final String message;
   ComicListError(this.message);
 

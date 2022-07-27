@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:marvel_app/features/dashboard/home/comic_list_page.dart';
 import 'package:marvel_app/features/dashboard/home/home_page.dart';
 import 'package:marvel_app/features/dashboard/search/search_page.dart';
 import 'package:marvel_app/features/settings/settings_page.dart';
@@ -17,13 +18,12 @@ class DashboardTabs extends StatefulWidget {
 
 class _DashboardTabsState extends State<DashboardTabs> {
 
-    final _comicRepository = Modular.get<ComicRepository>();
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static List<Widget> _widgetOptions = <Widget>[
-    ComicListWidget(),
-    SearchPage(),
+  static final List<Widget> _widgetOptions = <Widget>[
+     ComicListScreen(widget: ComicListWidget()),
+    const SearchPage(),
   ];
 
   void _onItemTapped(int index) {

@@ -26,7 +26,7 @@ class ComicRepository implements ComicRepositoryInterface {
       log('Comic Info: ${userData.data}');
       comic = ComicDTO.fromJson(userData.data).data?.results?.first;
     } on DioError catch (e) {
-       handleDioError(e);
+      handleDioError(e);
     }
     ComicItem? item = comic?.toComicItem();
     return item;
@@ -48,20 +48,13 @@ class ComicRepository implements ComicRepositoryInterface {
       });
       log('Comic Info: ${userData.data}');
       comicList = ComicDTO.fromJson(userData.data).data?.results;
-      
     } on DioError catch (e) {
-       handleDioError(e);
+      handleDioError(e);
     }
-    log('${comicList?.length.toString()}');
     comicList?.forEach((element) {
-         
+      resultsList.add(element.toComicItem());
+    });
 
-            resultsList.add(element.toComicItem());
-            //log(comic.title.toString());
-        });
-     
-    
-  //  log('Success: ${resultsList[0].title}');
     return resultsList;
   }
 
@@ -98,8 +91,7 @@ class ComicRepository implements ComicRepositoryInterface {
     } else {
       log('Error sending request!');
       log(e.message);
-      throw Exception(
-          'Cannot send request. ${e.message}');
+      throw Exception('Cannot send request. ${e.message}');
     }
   }
 }

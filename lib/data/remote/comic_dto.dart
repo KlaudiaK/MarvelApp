@@ -31,12 +31,12 @@ class ComicDTO {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
-    data['status'] = this.status;
-    data['copyright'] = this.copyright;
-    data['attributionText'] = this.attributionText;
-    data['attributionHTML'] = this.attributionHTML;
-    data['etag'] = this.etag;
+    data['code'] = code;
+    data['status'] = status;
+    data['copyright'] = copyright;
+    data['attributionText'] = attributionText;
+    data['attributionHTML'] = attributionHTML;
+    data['etag'] = etag;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
