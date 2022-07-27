@@ -1,48 +1,27 @@
 import 'package:bloc/bloc.dart';
-import 'package:marvel_app/data/local/comic.dart';
-import 'package:marvel_app/features/dashboard/cubit/search_comic_list_state.dart';
+import 'package:marvel_app/features/dashboard/cubit/comic_list_state.dart';
+import 'package:marvel_app/features/dashboard/cubit/response_status.dart';
 import 'package:meta/meta.dart';
 
 import '../../../repository/comic_repository.dart';
 
-import 'comic_detail_state.dart';
-import 'comic_list_state.dart';
-
 part 'comic_state.dart';
 
-class ComicCubit extends Cubit<ComicState> {
-  ComicCubit(this._comicRepository) : super(ComicInitial()) {
-      getComicList();
+class ComicCubit extends Cubit<ComicListState> {
+  ComicCubit(this._comicRepository) : super(const ComicListState()) {
+    getComicList();
   }
   final ComicRepository _comicRepository;
 
-  Future<void> getComicDetail(String id) async {
+  Future<void> getComicList() async {
+    if (isClosed) return;
     try {
-      emit(ComicDetailLoading());
-      final comic = await _comicRepository.getComicInfo(id: id);
-      emit(ComicDetailLoaded(comic));
-    } catch (e) {
-      emit(ComicDetailError(e.toString()));
-    }
-  }
-
-   Future<void> getComicList() async {
-    try {
-      emit(ComicListLoading());
+      emit(state.copyWith(comicListStatus: ResponseStatus.loading));
       final comicList = await _comicRepository.getComicList();
-      emit(ComicListLoaded(comicList));
+      emit(state.copyWith(
+          comicListStatus: ResponseStatus.success, comicList: comicList));
     } catch (e) {
-      emit(ComicListError(e.toString()));
-    }
-  }
-
-  Future<void> searchComics(String query) async {
-    try {
-      emit(SearchComicListLoading());
-      final comicList = await _comicRepository.searchComicList(query: query);
-      emit(SearchComicListLoaded(comicList));
-    } catch (e) {
-      emit(SearchComicListError(e.toString()));
+      emit(state.copyWith(comicListStatus: ResponseStatus.failure));
     }
   }
 }

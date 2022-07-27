@@ -22,8 +22,8 @@ class _DashboardTabsState extends State<DashboardTabs> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
-     ComicListScreen(widget: ComicListWidget()),
-    const SearchPage(),
+      ComicListScreen(),
+     SearchPage(),
   ];
 
   void _onItemTapped(int index) {
