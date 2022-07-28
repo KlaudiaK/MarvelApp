@@ -1,22 +1,94 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marvel_app/utils/navigation_paths.dart';
+import 'package:marvel_app/utils/strings.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../../../data/local/comic.dart';
+import '../../../utils/styles.dart';
 
 class DetailsPage extends StatelessWidget {
   final String? id;
-  const DetailsPage({Key? key, required this.id}) : super(key: key);
-//TODO Create details page
+  final ComicItem comic;
+
+  const DetailsPage({Key? key, required this.id, required this.comic})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Details Page')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () =>
-              Modular.to.navigate(NavigationPaths.dashboardModulePath),
-          child: Text('Navigate to Home Page'),
+      appBar: AppBar(
+        title: const Text(
+          StringResource.detail_app_bar_title,
+          style: TextStyle(fontSize: 24),
         ),
+        centerTitle: false,
+        backgroundColor: Colors.blueGrey.shade300,
+      ),
+      floatingActionButton: ElevatedButton(
+        onPressed: () => {_launchUrl()},
+        style: ElevatedButton.styleFrom(primary: Colors.red),
+        child: const Text(StringResource.see_more),
+      ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterFloat,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.network(
+            comic.thumbnail ?? ComicItem.defaultThumbnailUrl,
+            fit: BoxFit.cover,
+          ),
+          DraggableScrollableSheet(
+              initialChildSize: 0.6,
+              maxChildSize: 0.8,
+              builder: (context, scrollController) => DraggableScrollableSheet(
+                  builder: (context, scrollController) => Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white.withAlpha(230),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: ListView(
+                        controller: scrollController,
+                        children: [
+                          Center(
+                            child: Container(
+                              width: 100,
+                              height: 20,
+                              padding: const EdgeInsets.all(8),
+                              child: RaisedButton(
+                                onPressed: () {},
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(children: [
+                              Text(comic.title ?? StringResource.unknown_title,
+                                  style: StyleResource.titleTextStyle),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              Text(
+                                  comic.author ?? StringResource.unknown_author,
+                                  style: StyleResource.authorTextStyle),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              Text(comic.description ??
+                                  StringResource.empty_string)
+                            ]),
+                          )
+                        ],
+                      ))))
+        ],
       ),
     );
+  }
+
+  Future<void> _launchUrl() async {
+    comic.uriDetails = comic.uriDetails?.replaceAll('http', 'https');
+    Uri _url = Uri.parse(comic.uriDetails ?? ComicItem.defaultDetailsUrl);
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
   }
 }

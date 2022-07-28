@@ -11,8 +11,7 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-        value: Modular.get<ComicSearchBloc>(),
-        child: const SearchScreen());
+        value: Modular.get<ComicSearchBloc>(), child: const SearchScreen());
   }
 }
 
@@ -133,7 +132,7 @@ class SearchComicListWidget extends StatelessWidget {
                 Divider(
                   height: 30,
                 ),
-                Icon(Icons.book, size: 150)
+                Icon(Icons.book, size: 150),
               ],
             ),
           ),
