@@ -12,4 +12,5 @@ class StringResource {
   static const unknown_title = 'Unknown title';
   static const see_more = 'See more';
   static const detail_app_bar_title = 'Detail';
+  static const splash_screen_image_path = 'images/comiclogo.png';
 }
