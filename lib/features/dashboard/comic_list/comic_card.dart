@@ -12,7 +12,7 @@ class ComicCard extends StatelessWidget {
       children: [
         Image.network(
           comic?.thumbnail ??
-              'https://static.posters.cz/image/750/plakaty/marvel-comic-here-come-the-heroes-i34927.jpg',
+              ComicItem.defaultThumbnailUrl,
           width: 100,
         ),
         Padding(

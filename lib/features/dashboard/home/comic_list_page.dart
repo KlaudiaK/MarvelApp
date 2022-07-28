@@ -1,14 +1,12 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marvel_app/features/dashboard/cubit/comic_list_state.dart';
-import 'package:marvel_app/features/dashboard/cubit/response_status.dart';
-
-import '../cubit/comic_cubit.dart';
-import '../cubit/response_status.dart';
-import 'comic_list.dart';
+import 'package:marvel_app/features/dashboard/response_status.dart';
+import '../response_status.dart';
+import '../comic_list/comic_list.dart';
+import 'cubit/comic_cubit.dart';
+import 'cubit/comic_list_state.dart';
 
 class ComicListScreen extends StatelessWidget {
   ComicListScreen({Key? key}) : super(key: key);
@@ -33,7 +31,6 @@ class ComicListWidget extends StatelessWidget {
       switch (state.comicListStatus) {
         case ResponseStatus.initial:
           {
-            log(state.toString());
             return Container();
           }
         case (ResponseStatus.loading):
@@ -44,7 +41,7 @@ class ComicListWidget extends StatelessWidget {
           }
         case (ResponseStatus.failure):
           {
-            return Center(child: Text("Error"));
+            return const Center(child: Text("Error occured"));
           }
         case (ResponseStatus.success):
           {

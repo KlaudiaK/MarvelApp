@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:marvel_app/features/dashboard/cubit/comic_list_state.dart';
-import 'package:marvel_app/features/dashboard/cubit/response_status.dart';
+
+import 'package:marvel_app/features/dashboard/response_status.dart';
 import 'package:meta/meta.dart';
 
-import '../../../repository/comic_repository.dart';
+import '../../../../repository/comic_repository.dart';
 
-part 'comic_state.dart';
+import 'comic_list_state.dart';
 
 class ComicCubit extends Cubit<ComicListState> {
   ComicCubit(this._comicRepository) : super(const ComicListState());

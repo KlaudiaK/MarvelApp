@@ -4,7 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:marvel_app/data/local/comic.dart';
 
-import '../../../repository/comic_repository.dart';
+import '../../../../repository/comic_repository.dart';
+
 
 part 'comic_search_event.dart';
 part 'comic_search_state.dart';
@@ -17,7 +18,6 @@ class ComicSearchBloc extends Bloc<ComicSearchEvent, ComicSearchState> {
 
   void _onTitleChanged(
       OnTitleChanged event, Emitter<ComicSearchState> emit) async {
-    log("In on title changed");
     try {
       emit(ComicSearchLoading());
       final comicList =

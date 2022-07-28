@@ -3,10 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marvel_app/features/dashboard/bloc/comic_search_bloc.dart';
 import 'package:marvel_app/utils/navigation_paths.dart';
 
-import '../home/comic_list.dart';
+import '../comic_list/comic_list.dart';
+import 'bloc/comic_search_bloc.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({Key? key}) : super(key: key);
@@ -146,7 +146,7 @@ class SearchComicListWidget extends StatelessWidget {
           return const Center(child: Text("No results :("));
         }
       } else if (state is ComicSearchError) {
-        return const Center(child: Text("Error"));
+        return const Center(child: Text("Error occured"));
       } else {
         return Container();
       }

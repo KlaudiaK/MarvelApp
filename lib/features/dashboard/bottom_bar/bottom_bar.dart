@@ -7,7 +7,7 @@ import 'package:marvel_app/features/dashboard/search/search_page.dart';
 import 'package:marvel_app/features/settings/settings_page.dart';
 
 import '../../../repository/comic_repository.dart';
-import '../home/comic_list.dart';
+import '../comic_list/comic_list.dart';
 
 class DashboardTabs extends StatefulWidget {
   const DashboardTabs({Key? key}) : super(key: key);

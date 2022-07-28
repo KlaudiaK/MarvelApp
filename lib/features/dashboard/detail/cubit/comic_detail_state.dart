@@ -1,13 +1,10 @@
-
 import 'package:flutter/cupertino.dart';
-import 'package:marvel_app/features/dashboard/cubit/comic_cubit.dart';
-
-import '../../../data/local/comic.dart';
+import '../../../../data/local/comic.dart';
 
 @immutable
-abstract class ComicDetailState extends ComicState {
-  ComicDetailState();
-}
+abstract class ComicDetailState {}
+
+class ComicDetailInitial extends ComicDetailState {}
 
 class ComicDetailLoading extends ComicDetailState {
   ComicDetailLoading();
