@@ -2,6 +2,7 @@ import 'package:marvel_app/data/remote/thumbnail_dto.dart';
 
 import '../local/comic.dart';
 import 'creators_dto.dart';
+import 'urls_dto.dart';
 
 class Results {
   int? id;
@@ -9,7 +10,7 @@ class Results {
   String? description;
 
   String? resourceURI;
-
+List<Urls>? urls;
   List<Null>? collections;
 
   Thumbnail? thumbnail;
@@ -22,6 +23,7 @@ class Results {
     this.title,
     this.description,
     this.resourceURI,
+    this.urls,
     this.collections,
     this.thumbnail,
     this.creators,
@@ -37,7 +39,12 @@ class Results {
     description = json['description'];
 
     resourceURI = json['resourceURI'];
-
+    if (json['urls'] != null) {
+      urls = <Urls>[];
+      json['urls'].forEach((v) {
+        urls!.add(Urls.fromJson(v));
+      });
+    }
     thumbnail = json['thumbnail'] != null
         ? Thumbnail.fromJson(json['thumbnail'])
         : null;
@@ -58,7 +65,9 @@ class Results {
     data['description'] = description;
 
     data['resourceURI'] = resourceURI;
-
+   if (urls != null) {
+      data['urls'] = urls?.map((v) => v.toJson()).toList();
+    }
     if (thumbnail != null) {
       data['thumbnail'] = thumbnail?.toJson();
     }
@@ -87,7 +96,7 @@ class Results {
         author: author ?? "Unknown",
         description: description,
         thumbnail: thumbnail?.getFullPath(),
-        uriDetails: resourceURI
+        uriDetails: urls?[0].url
         );
   }
 }
