@@ -19,6 +19,6 @@ class DashboardModule extends Module {
         ChildRoute(NavigationPaths.searchPagePath,
             child: (context, args) => SearchPage()),
         ChildRoute(NavigationPaths.detailsPagePath,
-            child: (context, args) => DetailsPage(id: args.queryParams['id'])),
+            child: (context, args) => DetailsPage(id: args.queryParams['id'], comic: args.data,)),
       ];
 }

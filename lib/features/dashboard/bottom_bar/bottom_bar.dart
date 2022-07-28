@@ -33,6 +33,7 @@ class _DashboardTabsState extends State<DashboardTabs> {
             style: TextStyle(fontSize: 24),
           ),
           centerTitle: false,
+          backgroundColor: Colors.blueGrey.shade300,
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
