@@ -1,12 +1,8 @@
 import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:marvel_app/data/local/comic.dart';
-
 import '../../../../repository/comic_repository.dart';
-
-
 part 'comic_search_event.dart';
 part 'comic_search_state.dart';
 

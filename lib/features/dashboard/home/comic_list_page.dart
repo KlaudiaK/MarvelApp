@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marvel_app/features/dashboard/response_status.dart';
+import 'package:marvel_app/utils/strings.dart';
 import '../response_status.dart';
 import '../comic_list/comic_list.dart';
 import 'cubit/comic_cubit.dart';
@@ -15,9 +16,9 @@ class ComicListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return BlocProvider(
-        create: (context) => cubit..getComicList(), child: const ComicListWidget());
+        create: (context) => cubit..getComicList(),
+        child: const ComicListWidget());
   }
 }
 
@@ -41,7 +42,7 @@ class ComicListWidget extends StatelessWidget {
           }
         case (ResponseStatus.failure):
           {
-            return const Center(child: Text("Error occured"));
+            return const Center(child: Text(StringResource.error_occured));
           }
         case (ResponseStatus.success):
           {

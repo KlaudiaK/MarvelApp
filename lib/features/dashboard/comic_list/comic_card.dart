@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:marvel_app/data/local/comic.dart';
+import 'package:marvel_app/utils/strings.dart';
 
 class ComicCard extends StatelessWidget {
   final ComicItem? comic;
@@ -11,8 +12,7 @@ class ComicCard extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Image.network(
-          comic?.thumbnail ??
-              ComicItem.defaultThumbnailUrl,
+          comic?.thumbnail ?? ComicItem.defaultThumbnailUrl,
           width: 100,
         ),
         Padding(
@@ -30,8 +30,9 @@ class ComicCard extends StatelessWidget {
                   height: 100,
                   padding: const EdgeInsets.only(top: 6.0),
                   child: Text(
-                    comic?.title ?? "",
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                    comic?.title ?? StringResource.empty_string,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w800),
                     overflow: TextOverflow.visible,
                   ),
                 ),
@@ -39,7 +40,8 @@ class ComicCard extends StatelessWidget {
                     width: 200,
                     height: 50,
                     padding: const EdgeInsets.only(top: 2.0),
-                    child: Text('Written by ${comic?.author}')),
+                    child:
+                        Text('${StringResource.written_by} ${comic?.author}')),
               ],
             )),
       ],

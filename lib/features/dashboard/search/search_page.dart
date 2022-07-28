@@ -1,15 +1,12 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marvel_app/utils/navigation_paths.dart';
-
+import 'package:marvel_app/utils/strings.dart';
 import '../comic_list/comic_list.dart';
 import 'bloc/comic_search_bloc.dart';
 
 class SearchPage extends StatelessWidget {
-  SearchPage({Key? key}) : super(key: key);
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +55,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           borderSide:
                               BorderSide(color: Colors.black87, width: 0.8),
                           borderRadius: BorderRadius.all(Radius.circular(24))),
-                      hintText: 'Search for a comic book',
+                      hintText: StringResource.search_hint,
                     ),
                   ),
                 ),
@@ -68,14 +65,20 @@ class _SearchScreenState extends State<SearchScreen> {
               style: TextButton.styleFrom(
                   textStyle: const TextStyle(fontSize: 16),
                   primary: Colors.black),
-              onPressed: () {},
-              child: const Text('Cancel'),
+              onPressed: () => _clearTitle(),
+              child: const Text(StringResource.cancel),
             ),
           ],
         ),
         const Expanded(child: SearchComicListWidget()),
       ],
     );
+  }
+
+  void _clearTitle() {
+    setState(() {
+      queryController.text = StringResource.empty_string;
+    });
   }
 
   void _handleChangedQuery(String query) {
@@ -122,7 +125,7 @@ class SearchComicListWidget extends StatelessWidget {
             child: Column(
               children: const [
                 Text(
-                  'Start typing to find a particular comics',
+                  StringResource.search_page_initial_text,
                   style: TextStyle(fontSize: 36, fontWeight: FontWeight.w700),
                   overflow: TextOverflow.visible,
                   textAlign: TextAlign.center,
@@ -140,13 +143,17 @@ class SearchComicListWidget extends StatelessWidget {
           child: CircularProgressIndicator(),
         );
       } else if (state is ComicSearchLoaded) {
-        if (state.comicList != []) {
+        if (state.comicList.isNotEmpty) {
           return ComicList(comics: state.comicList);
         } else {
-          return const Center(child: Text("No results :("));
+          return const Center(
+              child: Text(
+            StringResource.no_results,
+            style: TextStyle(fontSize: 36, fontWeight: FontWeight.w700),
+          ));
         }
       } else if (state is ComicSearchError) {
-        return const Center(child: Text("Error occured"));
+        return const Center(child: Text(StringResource.error_occured));
       } else {
         return Container();
       }

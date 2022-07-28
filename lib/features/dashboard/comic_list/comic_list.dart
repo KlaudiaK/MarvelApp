@@ -6,7 +6,6 @@ import 'package:marvel_app/data/local/comic.dart';
 import 'comic_card.dart';
 import 'package:marvel_app/utils/navigation_paths.dart';
 
-
 class ComicList extends StatelessWidget {
   ComicList({Key? key, required this.comics}) : super(key: key);
   List<ComicItem?> comics;
@@ -35,7 +34,5 @@ class ComicList extends StatelessWidget {
   void _onItemClicked() {
     () => Modular.to.navigate(
         '${NavigationPaths.dashboardModulePath}${NavigationPaths.searchPagePath}');
-
-    log("Clicked");
   }
 }

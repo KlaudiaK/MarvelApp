@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marvel_app/features/dashboard/home/comic_list_page.dart';
-import 'package:marvel_app/features/dashboard/home/home_page.dart';
 import 'package:marvel_app/features/dashboard/search/search_page.dart';
-import 'package:marvel_app/features/settings/settings_page.dart';
-
-import '../../../repository/comic_repository.dart';
-import '../comic_list/comic_list.dart';
+import 'package:marvel_app/utils/strings.dart';
 
 class DashboardTabs extends StatefulWidget {
   const DashboardTabs({Key? key}) : super(key: key);
@@ -17,13 +11,11 @@ class DashboardTabs extends StatefulWidget {
 }
 
 class _DashboardTabsState extends State<DashboardTabs> {
-
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
   static final List<Widget> _widgetOptions = <Widget>[
-      ComicListScreen(),
-     SearchPage(),
+    ComicListScreen(),
+    const SearchPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -37,22 +29,23 @@ class _DashboardTabsState extends State<DashboardTabs> {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Marvel Comics',
+            StringResource.top_app_bar_text,
             style: TextStyle(fontSize: 24),
           ),
           centerTitle: false,
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home), label: StringResource.empty_string),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.search), label: StringResource.empty_string),
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.grey,
           onTap: _onItemTapped,
         ),
-        body: Container(child: Center(child: _widgetOptions[_selectedIndex])));
+        body: Center(child: _widgetOptions[_selectedIndex]));
   }
-
 }
