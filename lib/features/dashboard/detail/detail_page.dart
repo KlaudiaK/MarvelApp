@@ -3,12 +3,11 @@ import 'package:marvel_app/utils/strings.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../data/local/comic.dart';
 import '../../../utils/styles.dart';
-//import 'dart:html' as html;
 
 class DetailsPage extends StatelessWidget {
   final String? id;
   final ComicItem comic;
-  // = Uri.parse(comic.uriDetails ?? 'https://www.marvel.com/comics?&options%5Boffset%5D=0&totalcount=12');
+
   const DetailsPage({Key? key, required this.id, required this.comic})
       : super(key: key);
 
@@ -24,9 +23,7 @@ class DetailsPage extends StatelessWidget {
         backgroundColor: Colors.blueGrey.shade300,
       ),
       floatingActionButton: ElevatedButton(
-        onPressed: () => {_launchUrl()
-         
-        },
+        onPressed: () => {_launchUrl()},
         style: ElevatedButton.styleFrom(primary: Colors.red),
         child: const Text(StringResource.see_more),
       ),
@@ -90,8 +87,8 @@ class DetailsPage extends StatelessWidget {
   Future<void> _launchUrl() async {
     comic.uriDetails = comic.uriDetails?.replaceAll('http', 'https');
     Uri _url = Uri.parse(comic.uriDetails ?? ComicItem.defaultDetailsUrl);
-  if (!await launchUrl(_url)) {
-    throw 'Could not launch $_url';
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
   }
-}
 }
