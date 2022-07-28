@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marvel_app/data/local/comic.dart';
+import 'package:marvel_app/utils/strings.dart';
 import 'comic_card.dart';
 import 'package:marvel_app/utils/navigation_paths.dart';
 
@@ -23,7 +24,7 @@ class ComicList extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
                 child: InkWell(
-                    onTap: _onItemClicked,
+                    onTap: () =>  _onItemClicked(comics[index]?.id.toString() ?? StringResource.empty_string, comics[index]),
                     child: ComicCard(
                       comic: comics[index],
                     ))));
@@ -31,8 +32,8 @@ class ComicList extends StatelessWidget {
     );
   }
 
-  void _onItemClicked() {
-    () => Modular.to.navigate(
-        '${NavigationPaths.dashboardModulePath}${NavigationPaths.searchPagePath}');
+  void _onItemClicked(String id, ComicItem? comic) {
+     Modular.to.pushNamed(
+        '${NavigationPaths.dashboardModulePath}${NavigationPaths.simpleDetailsPagePath}/$id', arguments: comic);
   }
 }
