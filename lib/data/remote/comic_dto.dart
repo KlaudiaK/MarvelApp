@@ -1,4 +1,3 @@
-import '../local/comic.dart';
 import 'data_dto.dart';
 
 class ComicDTO {
@@ -26,19 +25,19 @@ class ComicDTO {
     attributionText = json['attributionText'];
     attributionHTML = json['attributionHTML'];
     etag = json['etag'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
-    data['status'] = this.status;
-    data['copyright'] = this.copyright;
-    data['attributionText'] = this.attributionText;
-    data['attributionHTML'] = this.attributionHTML;
-    data['etag'] = this.etag;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['code'] = code;
+    data['status'] = status;
+    data['copyright'] = copyright;
+    data['attributionText'] = attributionText;
+    data['attributionHTML'] = attributionHTML;
+    data['etag'] = etag;
     if (this.data != null) {
-      data['data'] = this.data!.toJson();
+      data['data'] = this.data?.toJson();
     }
     return data;
   }

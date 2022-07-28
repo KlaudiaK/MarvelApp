@@ -1,4 +1,3 @@
-
 import 'package:marvel_app/data/remote/thumbnail_dto.dart';
 
 import '../local/comic.dart';
@@ -40,48 +39,55 @@ class Results {
     resourceURI = json['resourceURI'];
 
     thumbnail = json['thumbnail'] != null
-        ? new Thumbnail.fromJson(json['thumbnail'])
+        ? Thumbnail.fromJson(json['thumbnail'])
         : null;
 
-    creators = json['creators'] != null
-        ? new Creators.fromJson(json['creators'])
-        : null;
+    creators =
+        json['creators'] != null ? Creators.fromJson(json['creators']) : null;
     characters = json['characters'] != null
-        ? new Creators.fromJson(json['characters'])
+        ? Creators.fromJson(json['characters'])
         : null;
     stories =
-        json['stories'] != null ? new Creators.fromJson(json['stories']) : null;
+        json['stories'] != null ? Creators.fromJson(json['stories']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['description'] = this.description;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['description'] = description;
 
-    data['resourceURI'] = this.resourceURI;
+    data['resourceURI'] = resourceURI;
 
-    if (this.thumbnail != null) {
-      data['thumbnail'] = this.thumbnail!.toJson();
+    if (thumbnail != null) {
+      data['thumbnail'] = thumbnail?.toJson();
     }
 
-    if (this.creators != null) {
-      data['creators'] = this.creators!.toJson();
+    if (creators != null) {
+      data['creators'] = creators?.toJson();
     }
-    if (this.characters != null) {
-      data['characters'] = this.characters!.toJson();
+    if (characters != null) {
+      data['characters'] = characters?.toJson();
     }
 
     return data;
   }
 
   ComicItem toComicItem() {
+    String? author;
+    if (creators?.items != null) {
+      if (creators?.items?.isNotEmpty ?? true) {
+        author = creators?.items?[0].name;
+      }
+    }
+    thumbnail?.path = thumbnail?.path?.replaceAll("http", "https");
     return ComicItem(
         id: id,
         title: title,
-        author: creators?.items?.first.name,
+        author: author ?? "Unknown",
         description: description,
         thumbnail: thumbnail?.getFullPath(),
-        uriDetails: resourceURI);
+        uriDetails: resourceURI
+        );
   }
 }

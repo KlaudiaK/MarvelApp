@@ -1,12 +1,9 @@
 import 'dart:developer';
-
 import 'package:marvel_app/data/local/comic.dart';
 import 'package:marvel_app/data/remote/comic_dto.dart';
 import 'package:marvel_app/network/api_client.dart';
 import 'package:marvel_app/repository/comic_repository_interface.dart';
-
 import 'package:dio/dio.dart';
-
 import '../data/remote/results_dto.dart';
 
 class ComicRepository implements ComicRepositoryInterface {
@@ -26,7 +23,7 @@ class ComicRepository implements ComicRepositoryInterface {
       log('Comic Info: ${userData.data}');
       comic = ComicDTO.fromJson(userData.data).data?.results?.first;
     } on DioError catch (e) {
-       handleDioError(e);
+      handleDioError(e);
     }
     ComicItem? item = comic?.toComicItem();
     return item;
@@ -35,7 +32,8 @@ class ComicRepository implements ComicRepositoryInterface {
   @override
   Future<List<ComicItem>> getComicList() async {
     List<Results>? comicList;
-    List<ComicItem> resultsList = List.empty();
+    List<ComicItem> resultsList = <ComicItem>[];
+
     try {
       Response userData = await api.dio.get(api.getPath, queryParameters: {
         "ts": api.getTimestamp,
@@ -48,18 +46,19 @@ class ComicRepository implements ComicRepositoryInterface {
       log('Comic Info: ${userData.data}');
       comicList = ComicDTO.fromJson(userData.data).data?.results;
     } on DioError catch (e) {
-       handleDioError(e);
+      handleDioError(e);
     }
     comicList?.forEach((element) {
       resultsList.add(element.toComicItem());
     });
+
     return resultsList;
   }
 
   @override
   Future<List<ComicItem?>> searchComicList({required String query}) async {
     List<Results>? comicList;
-    List<ComicItem> resultsList = List.empty();
+    List<ComicItem> resultsList = <ComicItem>[];
     try {
       Response userData = await api.dio.get(api.getPath, queryParameters: {
         "ts": api.getTimestamp,
@@ -89,8 +88,7 @@ class ComicRepository implements ComicRepositoryInterface {
     } else {
       log('Error sending request!');
       log(e.message);
-      throw Exception(
-          'Cannot send request. ${e.message}');
+      throw Exception('Cannot send request. ${e.message}');
     }
   }
 }
