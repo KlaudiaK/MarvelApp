@@ -10,8 +10,8 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => Modular.get<ComicSearchBloc>(),
+    return BlocProvider.value(
+        value: Modular.get<ComicSearchBloc>(),
         child: const SearchScreen());
   }
 }

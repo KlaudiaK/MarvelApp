@@ -1,12 +1,9 @@
 import 'dart:developer';
-
 import 'package:marvel_app/data/local/comic.dart';
 import 'package:marvel_app/data/remote/comic_dto.dart';
 import 'package:marvel_app/network/api_client.dart';
 import 'package:marvel_app/repository/comic_repository_interface.dart';
-
 import 'package:dio/dio.dart';
-
 import '../data/remote/results_dto.dart';
 
 class ComicRepository implements ComicRepositoryInterface {
@@ -35,7 +32,7 @@ class ComicRepository implements ComicRepositoryInterface {
   @override
   Future<List<ComicItem>> getComicList() async {
     List<Results>? comicList;
-    var resultsList = <ComicItem>[];
+    List<ComicItem> resultsList = <ComicItem>[];
 
     try {
       Response userData = await api.dio.get(api.getPath, queryParameters: {
@@ -61,7 +58,7 @@ class ComicRepository implements ComicRepositoryInterface {
   @override
   Future<List<ComicItem?>> searchComicList({required String query}) async {
     List<Results>? comicList;
-    var resultsList = <ComicItem>[];
+    List<ComicItem> resultsList = <ComicItem>[];
     try {
       Response userData = await api.dio.get(api.getPath, queryParameters: {
         "ts": api.getTimestamp,

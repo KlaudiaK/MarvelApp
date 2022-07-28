@@ -12,7 +12,7 @@ class Creators {
     if (json['items'] != null) {
       items = <Items>[];
       json['items'].forEach((v) {
-        items!.add(Items.fromJson(v));
+        items?.add(Items.fromJson(v));
       });
     }
     returned = json['returned'];
@@ -23,7 +23,7 @@ class Creators {
     data['available'] = available;
     data['collectionURI'] = collectionURI;
     if (items != null) {
-      data['items'] = items!.map((v) => v.toJson()).toList();
+      data['items'] = items?.map((v) => v.toJson()).toList();
     }
     data['returned'] = returned;
     return data;

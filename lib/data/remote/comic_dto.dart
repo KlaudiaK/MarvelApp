@@ -37,7 +37,7 @@ class ComicDTO {
     data['attributionHTML'] = attributionHTML;
     data['etag'] = etag;
     if (this.data != null) {
-      data['data'] = this.data!.toJson();
+      data['data'] = this.data?.toJson();
     }
     return data;
   }

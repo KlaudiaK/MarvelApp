@@ -17,7 +17,7 @@ class Data {
     if (json['results'] != null) {
       results = <Results>[];
       json['results'].forEach((v) {
-        results!.add(Results.fromJson(v));
+        results?.add(Results.fromJson(v));
       });
     }
   }
@@ -29,7 +29,7 @@ class Data {
     data['total'] = total;
     data['count'] = count;
     if (results != null) {
-      data['results'] = results!.map((v) => v.toJson()).toList();
+      data['results'] = results?.map((v) => v.toJson()).toList();
     }
     return data;
   }

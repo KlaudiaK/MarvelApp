@@ -60,14 +60,14 @@ class Results {
     data['resourceURI'] = resourceURI;
 
     if (thumbnail != null) {
-      data['thumbnail'] = thumbnail!.toJson();
+      data['thumbnail'] = thumbnail?.toJson();
     }
 
     if (creators != null) {
-      data['creators'] = creators!.toJson();
+      data['creators'] = creators?.toJson();
     }
     if (characters != null) {
-      data['characters'] = characters!.toJson();
+      data['characters'] = characters?.toJson();
     }
 
     return data;
