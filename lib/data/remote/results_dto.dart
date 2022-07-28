@@ -42,7 +42,7 @@ List<Urls>? urls;
     if (json['urls'] != null) {
       urls = <Urls>[];
       json['urls'].forEach((v) {
-        urls!.add(Urls.fromJson(v));
+        urls?.add(Urls.fromJson(v));
       });
     }
     thumbnail = json['thumbnail'] != null
