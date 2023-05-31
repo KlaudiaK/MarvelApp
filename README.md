@@ -1,16 +1,16 @@
-# marvel_app
+# MarvelApp
 
-A new Flutter project.
+Simple app for marvel enthusiasts made in Flutter. 
 
-## Getting Started
+## Building from source 🛠️
+1. If you don't have Flutter SDK installed, please visit official Flutter site.
 
-This project is a starting point for a Flutter application.
+2. Fetch latest source code from master branch.
+git clone https://github.com/gokadzev/Musify.git
 
-A few resources to get you started if this is your first Flutter project:
+3. Run the app with Android Studio or VS Code. Or the command line:
+```
+flutter pub get
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+flutter run --flavor github
+```
